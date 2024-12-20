@@ -88,6 +88,7 @@ export const logoutAccount = async () => {
         await accountsManager.deleteSession('current');
         
         console.log('Session deleted');
+        return 'success';
     } catch (error) {
         console.error('Error during logout:', error);
         return null;

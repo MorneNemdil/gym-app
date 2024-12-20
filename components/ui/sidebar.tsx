@@ -1,15 +1,26 @@
 'use client'
 
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { sidebarLinks } from '@/constants'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import Footer from './footer'
+import { getLoggedInUser } from '@/lib/actions/user.actions'
 
 const Sidebar = (props: SiderbarProps) => {
+    const [user, setUser] = useState();
     const pathName = usePathname();
+
+    useEffect(() => {
+        const getUser = async () => {
+            const loggedInUser = await getLoggedInUser();
+            setUser(loggedInUser);
+        }
+
+        getUser();
+    }, [])
 
     return (
         <section className='sidebar'>
@@ -19,7 +30,7 @@ const Sidebar = (props: SiderbarProps) => {
                     className='flex mb-12 curser-pointer items-center gap-2'
                 >
                     <Image className='size-[24px] max-xl:size-14' src="/icons/logo.svg" width={34} height={34} alt='logo' />
-                    <h1 className='sidebar-logo'>App Name</h1>
+                    <h1 className='sidebar-logo'>GymPlex</h1>
                 </Link>
                 {sidebarLinks.map(x => {
                     const isCurrentPage = pathName === x.route || pathName.startsWith(x.route + "/")
@@ -44,9 +55,8 @@ const Sidebar = (props: SiderbarProps) => {
                         </Link>
                     )
                 })}
-                USER
             </nav>
-            <Footer user={props.user} />
+            {<Footer user={props.user} />}
         </section>
     )
 }

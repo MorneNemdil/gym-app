@@ -38,7 +38,7 @@ const MobileNavbar = (props: MobileNavbarProps) => {
                         className='flex curser-pointer items-center gap-1 px-4'
                     >
                         <Image src="/icons/logo.svg" width={34} height={34} alt='logo' />
-                        <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1 ml-2'>App Name</h1>
+                        <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1 ml-2'>GymPlex</h1>
                     </Link>
                     <div className='mobilenav-sheet'>
                         <SheetClose asChild>
@@ -67,7 +67,6 @@ const MobileNavbar = (props: MobileNavbarProps) => {
                                         </SheetClose>
                                     )
                                 })}
-                                USER
                             </nav>
                         </SheetClose>
                         <Footer user={props.user} type='mobile'/>
